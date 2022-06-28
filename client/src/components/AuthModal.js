@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { useCookies } from 'react-cookie'
 
 const AuthModal = ({setShowModal, isSignUp}) => {
 
@@ -8,6 +9,7 @@ const AuthModal = ({setShowModal, isSignUp}) => {
   const [password, setPassword] = useState(null)
   const [confirmPassword, setConfirmPassword] = useState(null)
   const [error, setError] = useState(null)
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
 
   let navigate = useNavigate()
 
@@ -27,13 +29,21 @@ const AuthModal = ({setShowModal, isSignUp}) => {
         return
       } 
 
-      const response = await axios.post('http://localhost:8000/signup', {email, password})
+      const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, {email, password})
+
+
+      // setCookie('email', response.data.email)
+      setCookie('UserId', response.data.userId)
+      setCookie('AuthToken', response.data.token)
 
 
 
       const success = response.status === 201
 
-      if (success) navigate('/onboarding')
+      if (success && isSignUp) navigate('/onboarding')
+      if (success && !isSignUp) navigate('/dashboard')
+
+      window.location.reload()
 
       
     } catch (error) {
@@ -47,7 +57,7 @@ const AuthModal = ({setShowModal, isSignUp}) => {
   return (
     <div className="auth-modal">
       <div className="close-icon" onClick={handleClick}>ⓧ</div>
-      <h2>{isSignUp ? 'CREAT ACCOUNT' : 'LOG IN'}</h2>
+      <h2>{isSignUp ? 'CREATE ACCOUNT' : 'LOG IN'}</h2>
       <p>By clicking Log In, you agree to our terms. Learn how we process your data in our Privacy Policy and Cookie Policy</p>
       <form onSubmit={handleSubmit}>
         <input 

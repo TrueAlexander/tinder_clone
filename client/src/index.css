@@ -216,6 +216,7 @@ nav .logo-container .logo {
 .dashboard {
   display: flex;
   justify-content: space-between;
+
 }
 
 .dashboard .swipe-container {
@@ -232,6 +233,7 @@ nav .logo-container .logo {
 }
 
 .card-container {
+  
   width: 400px;
   height: 650px;
 }
@@ -242,6 +244,7 @@ nav .logo-container .logo {
   border-radius: 30px;
   background-size: cover;
   background-position: center;
+  
 }
 
 .card h3 {
@@ -263,6 +266,7 @@ nav .logo-container .logo {
   width: 30%;
   text-align: left;
   z-index: 1;
+  border: 1px solid green;
 }
 
 .chat-container .chat-container-header {
@@ -271,6 +275,7 @@ nav .logo-container .logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .chat-container .option {
@@ -280,6 +285,7 @@ nav .logo-container .logo {
   font-size: 20px;
   margin: 2px;
   padding: 10px;
+  
 }
 
 .chat-container .option:disabled {
@@ -292,9 +298,11 @@ nav .logo-container .logo {
   align-items: center;
   padding: 20px;
   color: rgb(255, 255, 255);
+  
 }
 
 .img-container {
+  
   height: 30px;
   width: 30px;
   border-radius: 15px;
@@ -312,6 +320,7 @@ nav .logo-container .logo {
     padding: 20px;
     height: 60vh;
     overflow-y: auto;
+    border: 1px solid yellow;
 }
 
 /*-------- Chat Input --------*/
